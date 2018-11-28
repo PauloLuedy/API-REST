@@ -1,9 +1,43 @@
-<p>
-  component-listagem works!
-</p>
+<form method="POST" #frm="ngForm" (ngSubmit)="Criar(frm)">
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+      <label class="sr-only" for="inlineFormInput">Name</label>
+      <input class="form-control" id="inlineFormInputGroup" type="text" id="nome" name="nome" class="" placeholder="Digite o nome"
+        [(ngModel)]="contato.nome" required />
+    </div>
+    <div class="col-auto">
+      <label class="sr-only" for="inlineFormInputGroup">Username</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">@</div>
+        </div>
+        <input class="form-control" type="text" id="staticEmail2" name="Email" class="" placeholder="Digite o Email"
+          [(ngModel)]="contato.email" required />
+      </div>
+    </div>
 
-<ul>
-  <li *ngFor="let item of contatos" >
-    {{item.id}},{{item.nome}}
-</li>
-</ul>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2" [disabled]="frm.invalid"> Submit</button>
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+          <th scope="col">Deletar</th>
+
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of contatos" >
+          <img class="imagem" (click)="deletar(item.id)">
+          <th scope="col">{{item.id}}</th>
+          <th scope="col">{{item.nome}}</th>
+          <th scope="col">{{item.email}}</th>
+      </tr>
+    </tbody>
+  </table>
